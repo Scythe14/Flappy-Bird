@@ -3,6 +3,8 @@ package GameObject;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 
+import Helpers.AssetLoader;
+
 /**
  * Created by bouca-_d on 01/02/16.
  */
@@ -65,6 +67,7 @@ public class Bird {
     }
 
     public void onClick() {
+        AssetLoader.fly.play();
         if (isAlive)
             velocity.y = -140;
     }

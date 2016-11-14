@@ -1,6 +1,7 @@
 package Helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -24,6 +25,13 @@ public class AssetLoader {
     public static TextureRegion rankingButton;
     public static TextureRegion screenScore;
     public static TextureRegion bar;
+
+    public static Sound die;
+    public static Sound hit;
+    public static Sound scored;
+    public static Sound fly;
+    public static Sound gamescore;
+
     public static Animation birdAnimation;
 
 
@@ -37,12 +45,23 @@ public class AssetLoader {
         loadButtons(texture);
         loadTubes(texture);
         loadBirds(texture);
+        loadSounds();
+        loadText();
+    }
 
+    private static void loadText() {
         font = new BitmapFont(Gdx.files.internal("data/text.fnt"));
         font.getData().setScale(.25f, -.25f);
         shadow = new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
         shadow.getData().setScale(.25f, -.25f);
+    }
 
+    private static void loadSounds() {
+        die = Gdx.audio.newSound(Gdx.files.internal("data/sounds/die.mp3"));
+        hit = Gdx.audio.newSound(Gdx.files.internal("data/sounds/hit.mp3"));
+        scored = Gdx.audio.newSound(Gdx.files.internal("data/sounds/point.mp3"));
+        fly = Gdx.audio.newSound(Gdx.files.internal("data/sounds/wing.mp3"));
+        gamescore = Gdx.audio.newSound(Gdx.files.internal("data/sounds/swooshing.mp3"));
     }
 
     private static void loadButtons(Texture texture) {
@@ -95,5 +114,10 @@ public class AssetLoader {
         texture.dispose();
         font.dispose();
         shadow.dispose();
+        die.dispose();
+        hit.dispose();
+        scored.dispose();
+        fly.dispose();
+        gamescore.dispose();
     }
 }

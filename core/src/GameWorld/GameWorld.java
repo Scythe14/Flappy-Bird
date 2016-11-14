@@ -1,10 +1,12 @@
 package GameWorld;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 
 import GameObject.Bird;
 import GameObject.ScrollHandler;
+import Helpers.AssetLoader;
 
 /**
  * Created by bouca-_d on 01/02/16.
@@ -66,13 +68,17 @@ public class GameWorld {
         if (scroller.collides(bird) && bird.isAlive()) {
             scroller.stop();
             bird.die();
+            AssetLoader.hit.play();
+            AssetLoader.die.play();
         }
 
         if (Intersector.overlaps(bird.getBoundingCircle(), ground)) {
-            scroller.stop();
+            if (bird.isAlive())
+                AssetLoader.hit.play();
             currentState = GameState.GAMEOVER;
             bird.die();
             bird.decelerate();
+            scroller.stop();
         }
     }
 

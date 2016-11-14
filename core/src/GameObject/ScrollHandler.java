@@ -1,6 +1,7 @@
 package GameObject;
 
 import GameWorld.GameWorld;
+import Helpers.AssetLoader;
 
 /**
  * Created by bouca-_d on 02/02/16.
@@ -67,20 +68,17 @@ public class ScrollHandler {
     }
 
     public boolean collides(Bird bird) {
-        if (!pipe1.isScored()
-                && pipe1.getX() + (pipe1.getWidth() / 2) < bird.getX()
-                + bird.getWidth()) {
+        if (!pipe1.isScored() && pipe1.getX() + (pipe1.getWidth() / 2) < bird.getX() + bird.getWidth()) {
             addScore(1);
+            AssetLoader.scored.play();
             pipe1.setScored(true);
-        } else if (!pipe2.isScored()
-                && pipe2.getX() + (pipe2.getWidth() / 2) < bird.getX()
-                + bird.getWidth()) {
+        } else if (!pipe2.isScored() && pipe2.getX() + (pipe2.getWidth() / 2) < bird.getX() + bird.getWidth()) {
             addScore(1);
+            AssetLoader.scored.play();
             pipe2.setScored(true);
-        } else if (!pipe3.isScored()
-                && pipe3.getX() + (pipe3.getWidth() / 2) < bird.getX()
-                + bird.getWidth()) {
+        } else if (!pipe3.isScored() && pipe3.getX() + (pipe3.getWidth() / 2) < bird.getX() + bird.getWidth()) {
             addScore(1);
+            AssetLoader.scored.play();
             pipe3.setScored(true);
         }
         return (pipe1.collides(bird) || pipe2.collides(bird) || pipe3.collides(bird));
